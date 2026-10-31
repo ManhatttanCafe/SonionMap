@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TSX="$DIR/../node_modules/.bin/tsx"
+if [ ! -x "$TSX" ]; then
+  echo "Faltan dependencias. Ejecuta 'npm install' en $DIR/.." >&2
+  exit 1
+fi
+exec "$TSX" "$DIR/../server/cli.ts" "$@"
